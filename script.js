@@ -53,6 +53,8 @@ console.log(joab);
 //the primitive value of "flight" didn't change, but the object joab did, because objects change if referenced.
 //flightNum is just a copy of flight, not really used, but passenger references joab, so it changes both, because object goe sinto function heap
 */
+
+/*
 const newPassport = function (person) {
   person.passport = Math.trunc(Math.random() * 10000000000);
 };
@@ -60,3 +62,33 @@ const newPassport = function (person) {
 newPassport(joab);
 checkIn(flight, joab);
 //when we change the passport, the previous if condition fails. And it changes because the newPassport references the object joab and changes value, doesn't create a new variable inside itself and then changes it
+*/
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  //destructure to split the first word from the rest of the sentence, then make a reference for both parts. Then, uppercase the first word and join with the rest
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+//because the function calls a function, it turns into a HIGHER-ORDER FUNCTION
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  //"name" is a property of any function
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer('Javascript is the best!', upperFirstWord);
+
+transformer('Javascript is the best!', oneWord);
+
+//JS uses callback functions all the time
+const high5 = function () {
+  console.log('High Five!');
+};
+document.body.addEventListener('click', high5);
