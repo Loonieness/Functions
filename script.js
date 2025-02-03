@@ -64,6 +64,8 @@ checkIn(flight, joab);
 //when we change the passport, the previous if condition fails. And it changes because the newPassport references the object joab and changes value, doesn't create a new variable inside itself and then changes it
 */
 
+/*
+
 const oneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
 };
@@ -92,3 +94,24 @@ const high5 = function () {
   console.log('High Five!');
 };
 document.body.addEventListener('click', high5);
+
+*/
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name} `);
+  };
+};
+
+//o greeterHey agora se torna uma função. O parâmetro dentro dele irá para o name, e não para greeting, pois o hey, na criação do objeto, já se tornou um parâmetro permanente
+const greeterHey = greet('Hey');
+greeterHey('Joab');
+greeterHey('Douglas');
+
+//we can just call the greet function directly and "send two parameters at once"
+greet('Hello')('Jonas');
+
+//in case you want in arrow functions
+const greetArr = greeting => name => console.log(`${greeting} ${name} `);
+//that's confusing
+greetArr('Lino')('Virgo');
