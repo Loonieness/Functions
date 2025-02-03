@@ -97,6 +97,7 @@ document.body.addEventListener('click', high5);
 
 */
 
+/*
 const greet = function (greeting) {
   return function (name) {
     console.log(`${greeting} ${name} `);
@@ -115,3 +116,52 @@ greet('Hello')('Jonas');
 const greetArr = greeting => name => console.log(`${greeting} ${name} `);
 //that's confusing
 greetArr('Lino')('Virgo');
+
+*/
+
+const lufthansa = {
+  airline: 'Luftansa',
+  iataCode: 'LH',
+  bookings: [],
+  //function inside an object (não sei onde vou usar isso algum dia)
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Joab Almeida');
+lufthansa.book(635, 'Douglas Lock');
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+//book is now a function, and only the book function from lufthansa object. It won't call any other value from the object, which is bad. "this" won't work here
+const book = lufthansa.book;
+//doesn't work. "this" is undefined, because it is now a function instead of a method, so it doesn't point to anything already existing
+//book(23, 'Sara Albuquerque');
+
+//the "call" method forces "this" to become the first parameter: eurowings. So now, it points to anything inside that object
+book.call(eurowings, 23, 'Sara Albuquerque');
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Mariana Cross');
+console.log(lufthansa);
+
+//the other objects need to have the exact same property names (and probably order) to functions properly, because the original object has a method calling the property names
+
+//Apply method is the same thing is Call, but it receives only an array, not parameters. Not much used currently
+
+const flightData = [583, 'Ícaro Constantine'];
+book.apply(eurowings, flightData);
+console.log(eurowings);
+
+//in modern JS, you can just use a spread operator in call to do the same thing as Apply
+
+book.call(eurowings, ...flightData);
