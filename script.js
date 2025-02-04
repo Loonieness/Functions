@@ -163,5 +163,5 @@ book.apply(eurowings, flightData);
 console.log(eurowings);
 
 //in modern JS, you can just use a spread operator in call to do the same thing as Apply
-
+//Apply is not really used anymore
 book.call(eurowings, ...flightData);
