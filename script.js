@@ -164,4 +164,30 @@ console.log(eurowings);
 
 //in modern JS, you can just use a spread operator in call to do the same thing as Apply
 //Apply is not really used anymore
-book.call(eurowings, ...flightData);
+//book.call(eurowings, ...flightData);
+
+//Bind Method, basically creates a new function already with the this. bound to it from the original. That's why the $airline is not undefined
+const bookEW = book.bind(eurowings);
+bookEW(23, 'Jonas Constantino');
+
+const bookLH = book.bind(lufthansa);
+
+//the next parameter in the bind method serves as the first parameter from the function he is copying. "Partial Application"
+const bookEW23 = book.bind(eurowings, 23);
+//now every flight using this function is 23
+bookEW23('Joab Almeida');
+
+//Bind with Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+
+//.buy is the name of the button on the frontend
+//because in EL, this. becomes the button, the class, we change this. by binding 'lufthansa' as the new this. and return a function
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
