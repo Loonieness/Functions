@@ -119,6 +119,8 @@ greetArr('Lino')('Virgo');
 
 */
 
+/*
+
 const lufthansa = {
   airline: 'Luftansa',
   iataCode: 'LH',
@@ -191,3 +193,19 @@ lufthansa.buyPlane = function () {
 document
   .querySelector('.buy')
   .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+  */
+
+const runOnce = function () {
+  console.log('This will never run again');
+};
+runOnce();
+
+//like this, the function is immediately created and called. Will be useful during async await
+//Immediately Invoked Function Expression
+(function () {
+  console.log('This will never run again');
+})();
+
+//as an arrow function
+(() => console.log('This will never run again'))();
