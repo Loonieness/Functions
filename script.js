@@ -196,6 +196,8 @@ document
 
   */
 
+/*
+
 const runOnce = function () {
   console.log('This will never run again');
 };
@@ -209,3 +211,25 @@ runOnce();
 
 //as an arrow function
 (() => console.log('This will never run again'))();
+
+*/
+
+//Closure
+//this function returns a function
+const secureBooking = function () {
+  let passengerCount = 0;
+
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passenger(s)`);
+  };
+};
+
+//booker shouldn't work, because secureBooking pops off the call stack, but the function it uses calls for passengerCount, which is a variable, so the Variable Enviroment actually stays and turns into a Closure. Closure is the VE from a closed function that is called and used.
+const booker = secureBooking();
+booker();
+booker();
+booker();
+
+//you can see in "scope" the closure containing the passengerCount variable
+console.dir(booker);
