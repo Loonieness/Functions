@@ -233,3 +233,33 @@ booker();
 
 //you can see in "scope" the closure containing the passengerCount variable
 console.dir(booker);
+
+//More Closures
+//Example 1
+let f;
+
+//the "a" variable is in the "backpack" of "f"
+const g = function () {
+  const a = 23;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const b = 777;
+  f = function () {
+    console.log(b * 2);
+  };
+};
+
+//g makes f an function, then we call it
+g();
+f();
+
+//reassigning f function
+h();
+f();
+console.dir(f);
+
+//Example 2
