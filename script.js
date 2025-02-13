@@ -235,7 +235,7 @@ booker();
 console.dir(booker);
 
 //More Closures
-//Example 1
+//Example1
 let f;
 
 //the "a" variable is in the "backpack" of "f"
@@ -262,4 +262,4 @@ h();
 f();
 console.dir(f);
 
-//Example 2
+//Example2
