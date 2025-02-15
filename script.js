@@ -263,3 +263,19 @@ f();
 console.dir(f);
 
 //Example 2
+
+const boardPassengers = function (n, wait) {
+  //this enters closure, because setTimeout uses it outside of it's own function scope. perGroup enters closure because of it
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+
+//the closure has priority, so this variable won't be used
+const perGroup = 1000;
+boardPassengers(180, 3);
